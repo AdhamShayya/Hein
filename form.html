@@ -1,0 +1,144 @@
+<?php
+
+session_start();
+require_once('db_connect.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    function validateInput($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+    $name = $email = $password = "";
+    $nameErr = $emailErr = $passErr = "";
+
+    if (isset($_POST['email'])) {
+        $email = validateInput($_POST['email']);
+        if (empty($email)) {
+            $emailErr = "Email is required";
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "Invalid email format";
+        }
+    }
+    if (isset($_POST['password'])) {
+        $password = validateInput($_POST['password']); 
+        if (empty($password)) {
+            $passErr = "Password is required";
+        }else if($password < 6){
+            $passErr = "Password is too Short";
+        }
+    }
+    if (isset($_POST['name'])) {
+        $name = validateInput($_POST['name']);
+        if (empty($name)) {
+            $nameErr = "Name is required";
+        }
+    }
+    if ($_POST["action"] === "signinBtn" && $passErr == "" && $emailErr == "") {
+        $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // Authentication successful
+            $_SESSION['user'] = $name;
+            echo("$current_user");
+            header("Location: index.php");
+        } else {
+            // Authentication failed
+            echo "<div class='alert alert-danger'>Error Invalid Credentials: " . $conn->error . "</div>";
+        }
+    } elseif ($_POST["action"] === "signupBtn" && $nameErr == "" && $emailErr == "" && $passErr == "") {
+        $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
+        if ($conn->query($sql) === TRUE) {
+            echo json_encode(["redirect" => "index.php"]);
+        } else {
+            echo "<div class='alert alert-danger'>Error Registration Failed: " . $conn->error . "</div>";
+        }
+    }else{
+        
+        echo json_encode(["error" => "Fill all cred"]);
+    }
+}
+
+$conn->close();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
+  
+</head>
+<body>
+    <h1>Welcome to AA Cafe</h1>
+    <div class="container">
+        <div class="form-box">
+            <h1 id="title">Sign Up</h1>
+            <form method="post">
+                <div class="input-group">
+                    <div class="input-field" id="nameField">
+                        <input type="text" name="name" id="name" placeholder="Name" >
+                    </div>
+
+                    <div class="input-field">
+                        <input type="text" name="email" id="email" placeholder="Email" >
+                    </div>
+
+                    <div class="input-field">
+                        <input type="password" name="password" id="password" placeholder="Password" >
+                    </div>
+                    <p>Forgotten Password: <a href="#">Click Here!</a></p>
+                </div>
+                
+                <div class="btn-field"> 
+                    <button type="submit" name="action" id ="signinBtn"value="signinBtn" class="disable">Sign In</button>
+                    <button type="submit" name="action" id="signupBtn" value="signupBtn">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        var signinBtn = document.getElementById("signinBtn");
+        var signupBtn = document.getElementById("signupBtn");
+        var nameField = document.getElementById("nameField");
+        var name = document.getElementById("name");
+        var title = document.getElementById("title");
+        var email = document.getElementById("email");
+        var password = document.getElementById("password");
+
+        signinBtn.onclick = function() {
+            var emailValue = email.value.trim();
+            var passwordValue = password.value.trim();
+            if (emailValue == '' || passwordValue.length < 6){
+                nameField.style.maxHeight = "0";
+                title.innerHTML = "Sign In";
+                signupBtn.classList.add("disable");
+                signinBtn.classList.remove("disable");
+            }else {
+                window.location.assign("index.html");
+            }
+        }
+        signupBtn.onclick = function() {
+            var emailValue = email.value.trim();
+            var passwordValue = password.value.trim();
+            if (emailValue == '' || passwordValue.length < 6){
+                nameField.style.maxHeight = "60px";
+                title.innerHTML = "Sign Up";
+                signupBtn.classList.remove("disable");
+                signinBtn.classList.add("disable");
+            }else {
+                window.location.assign("index.html");
+            }
+        }
+        
+    </script>
+
+</body>
+</html>

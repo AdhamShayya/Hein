@@ -1,0 +1,332 @@
+* {
+	margin: 0;
+	padding: 0;
+    scroll-behavior: smooth;
+}
+ 
+body {
+	font-family: 'Times New Roman', Times, serif;
+    background-color:darkgray;
+    text-align: center;
+}
+
+ body h1 {
+    color: black;
+    text-shadow: 2px 2px white;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: gray;
+    
+}
+
+nav ul {
+	display: flex;
+	list-style: none;
+    flex-direction: column;
+    width: 100%;
+}
+nav ul li {
+        margin: 10px 0;
+}
+nav ul li a {
+	text-decoration: none;
+	color: #333;
+}
+
+nav ul li a:hover {
+	color: #999;
+}
+.navbar {
+    position:sticky;
+    top:0;
+    text-align: center;
+    width: 100%;
+    color: darkgray;
+    opacity: 0.85;
+    height: 60px;
+    z-index: 10;
+  }
+
+  .menu-items {
+    align-items: center;
+    display:inline;
+    flex-direction: column;
+}
+
+.menu-items li {
+  margin-left: 1cm;
+  margin-bottom: 1cm;
+  font-size: medium;
+  float: left;
+}
+
+.menu-items a {
+  color: #3b3a3a;
+  transition: color 0.3s ease-in-out;
+}
+
+.menu-item-image {
+    margin-right: 0;
+    margin-bottom: 20px;
+}
+.menu-items a:hover {
+  color: white;
+  transition: color 0.3s ease-in-out;
+}
+
+  .logo {
+    align-items: start;
+    font-size: xx-Large;
+  }
+
+  .logo h1 {
+    align-items: start;
+    color:gray;
+    text-shadow: 2px 2px white;
+   
+}
+ .row{
+    justify-content: center;
+ }
+
+.container {
+  max-width: 1200px;
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  height:100px;
+}
+
+.navbar-container {
+  justify-content: space-between;
+  text-align: center;
+}
+.anim {
+    animation: transitionIn 4s;
+ }
+ .hero-text {
+	text-align: center;
+    color: black;
+    }
+    
+.hero-text h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px grey;
+}
+    
+.hero-text p {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px white;
+}
+
+.marr li{
+    margin-right:  20px;
+    margin-bottom: 20px;
+}
+.marr {
+    margin-right:  40px;
+    margin-bottom: 40px;
+}
+
+img { 
+    width: 250px;
+    height:250px;
+    
+}
+
+.hero-text {
+	text-align: center;
+    color: black;
+    }
+    
+.hero-text h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px grey;
+}
+    
+.hero-text p {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px white;
+}
+    
+    .price {
+    color: #00A7E1;
+    font-size: 22px;
+    font-weight:bold;
+    
+    }
+    .card {
+        text-align: center;
+    }
+    /* About Section */
+    
+    .about {
+    padding: 50px;
+    background-color: darkgray;
+
+    }
+    .about h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    text-shadow: 2px 2px white;
+    }
+    
+    .about-text {
+    margin-bottom: 20px;
+    }
+
+    
+    .about-text h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    }
+    /* Contact Section */
+    
+    .contact {
+    padding: 50px;
+    background-color: gray;
+    }
+    
+    .contact h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    text-shadow: 2px 2px white;
+    }
+    
+    
+    .contact-form h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    }
+    
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    .contact-form input[type="tel"],
+    .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 10px;
+    }
+    .contact-form textarea {
+    height: 150px;
+    }
+    
+    .contact-form button[type="submit"] {
+    background-color: darkgray;
+    color:white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+    .contact-form button[type="submit"]:hover {
+        background-color: black;
+        color:white;
+    }
+    
+    
+    .contact-info h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    }
+    
+    .contact-info p {
+    margin-bottom: 10px;
+    }
+    
+    /* Footer */
+    
+    footer {
+    padding: 20px;
+    text-align: center;
+    background-color: darkgray;
+    color: #fff;
+    }
+
+    
+    
+    .contact-form,
+    .contact-info {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    
+    
+    .hero-text {
+        text-align: center;
+    }
+    
+    .hero-text h1 {
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+    
+    .hero-text p {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+    
+    .menu h2,
+    .about h2,
+    .contact h2 {
+        font-size: 36px;
+        margin-bottom: 30px;
+    }
+    
+    .menu-item-title {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+    
+    .menu-item-price {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .contact-info h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .delivery{
+        margin: auto 10% auto 10%;
+        
+      }
+    #delivery-info {
+        font-size: 20px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+      .delivery h1{
+        margin-bottom: 20px;
+      }
+      .deliveryHeader {
+        background-color: gray;
+        padding: 20px;
+      }
+      #itemsList {
+        text-align: center;
+      }
+
+      @keyframes transitionIn {
+
+            from {
+                opacity: 0;
+                transform: rotateX(-10deg);
+            }
+            to {
+                opacity: 1;
+                transform: rotateX(0);
+            }
+      }
+    
